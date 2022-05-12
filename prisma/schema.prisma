@@ -30,16 +30,17 @@ model Customer {
 }
 
 model Delivery {
-  id         String   @id @default(uuid())
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  ended_at   DateTime
+  id         String    @id @default(uuid())
+  item_name  String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  ended_at   DateTime?
 
-  customer    Customer    @relation(fields: [customer_id], references: [id])
-  deliveryman Deliveryman @relation(fields: [deliveryman_id], references: [id])
+  customer    Customer     @relation(fields: [customer_id], references: [id])
+  deliveryman Deliveryman? @relation(fields: [deliveryman_id], references: [id])
 
   customer_id    String
-  deliveryman_id String
+  deliveryman_id String?
 
   @@map("deliveries")
 }
