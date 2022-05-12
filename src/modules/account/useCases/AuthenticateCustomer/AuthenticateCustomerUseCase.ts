@@ -1,5 +1,5 @@
-import { ICustomerRepository } from "../../customer/core/repository/ICustomerRepository";
-import { IAuthenticateProvider } from "../providers/IAuthenticateProvider";
+import { ICustomerRepository } from "../../../customer/core/repository/ICustomerRepository";
+import { IAuthenticateCustomerProvider } from "../../providers/IAuthenticateCustomerProvider";
 interface IAuthenticateCustomer {
   username: string;
   password: string;
@@ -8,7 +8,7 @@ interface IAuthenticateCustomer {
 class AuthenticateCustomerUseCase {
   constructor(
     private customerRepository: ICustomerRepository,
-    private authenticateProvider: IAuthenticateProvider
+    private authenticateProvider: IAuthenticateCustomerProvider
   ) {}
 
   async execute(data: IAuthenticateCustomer) {
