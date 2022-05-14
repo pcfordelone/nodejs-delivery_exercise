@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import { createDeliverymanController } from "./CreateDeliveryman";
 import { deleteDeliverymanController } from "./DeleteDeliveryman";
-import { ensureAuthenticated } from "../../account/middlewares/ensureAuthenticate";
+import { ensureDeliverymanAuthenticate as ensureAuthenticated } from "../../account/middlewares/ensureDeliverymanAuthenticate";
 import { findDeliverymanByIdController } from "./FindDeliverymanById";
 import { findDeliverymanByUsernameController } from "./FindDeliverymanByUsername";
 import { getDeliverymansController } from "./GetDeliverymans";

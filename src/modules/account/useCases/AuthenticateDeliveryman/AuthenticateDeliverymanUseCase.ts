@@ -1,5 +1,5 @@
 import { IDeliverymanRepository } from "../../../deliveryman/core/repository/IDeliverymanRepository";
-import { IAuthenticateDeliverymanProvider } from "../../providers/IAuthenticateDeliverymanProvider";
+import { IAuthenticateProvider } from "../../providers/IAuthenticateProvider";
 interface IAuthenticateDeliveryman {
   username: string;
   password: string;
@@ -8,7 +8,7 @@ interface IAuthenticateDeliveryman {
 class AuthenticateDeliverymanUseCase {
   constructor(
     private deliverymanRepository: IDeliverymanRepository,
-    private authenticateProvider: IAuthenticateDeliverymanProvider
+    private authenticateProvider: IAuthenticateProvider
   ) {}
 
   async execute(data: IAuthenticateDeliveryman) {
@@ -24,7 +24,8 @@ class AuthenticateDeliverymanUseCase {
     }
 
     const token = await this.authenticateProvider.authenticate(
-      DeliverymanExists
+      DeliverymanExists,
+      "deliveryman"
     );
 
     return { token };

@@ -1,10 +1,10 @@
 import { PrismaCustomerRepository } from "../../../customer/core/repository/PrismaCustomerRepository";
-import { JWTAuthenticateCustomerProvider } from "../../providers/JWTAuthenticateCustomerProvider";
+import { JWTAuthenticateProvider } from "../../providers/JWTAuthenticateProvider";
 import { AuthenticateCustomerController } from "./AuthenticateCustomerController";
 import { AuthenticateCustomerUseCase } from "./AuthenticateCustomerUseCase";
 
 const customerRepository = new PrismaCustomerRepository();
-const authenticateProvider = new JWTAuthenticateCustomerProvider();
+const authenticateProvider = new JWTAuthenticateProvider();
 const authenticateCustomerUseCase = new AuthenticateCustomerUseCase(
   customerRepository,
   authenticateProvider

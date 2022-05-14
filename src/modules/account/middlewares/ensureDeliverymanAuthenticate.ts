@@ -5,7 +5,17 @@ type TEnsureAuthenticated = {
   (request: Request, response: Response, next: NextFunction): void | Response;
 };
 
-export const ensureAuthenticated: TEnsureAuthenticated = (
+interface IPayload {
+  user: {
+    id: string;
+    email: string;
+    type: string;
+  };
+  iat: number;
+  exp: number;
+}
+
+export const ensureDeliverymanAuthenticate: TEnsureAuthenticated = (
   request: Request,
   response: Response,
   next: NextFunction
@@ -21,7 +31,13 @@ export const ensureAuthenticated: TEnsureAuthenticated = (
   const [, token] = authToken.split(" ");
 
   try {
-    verify(token, process.env.JWT_SECRET);
+    const result: IPayload = verify(token, process.env.JWT_SECRET) as IPayload;
+
+    if (result.user.type !== "deliveryman") {
+      return response.status(400).json({
+        message: "Invalid User",
+      });
+    }
 
     return next();
   } catch (error) {

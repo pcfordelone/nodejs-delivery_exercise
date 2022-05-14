@@ -1,5 +1,6 @@
 import { ICustomerRepository } from "../../../customer/core/repository/ICustomerRepository";
-import { IAuthenticateCustomerProvider } from "../../providers/IAuthenticateCustomerProvider";
+import { IAuthenticateProvider } from "../../providers/IAuthenticateProvider";
+
 interface IAuthenticateCustomer {
   username: string;
   password: string;
@@ -8,7 +9,7 @@ interface IAuthenticateCustomer {
 class AuthenticateCustomerUseCase {
   constructor(
     private customerRepository: ICustomerRepository,
-    private authenticateProvider: IAuthenticateCustomerProvider
+    private authenticateProvider: IAuthenticateProvider
   ) {}
 
   async execute(data: IAuthenticateCustomer) {
@@ -24,7 +25,10 @@ class AuthenticateCustomerUseCase {
       throw new Error("Wrong password!!!");
     }
 
-    const token = await this.authenticateProvider.authenticate(customerExists);
+    const token = await this.authenticateProvider.authenticate(
+      customerExists,
+      "customer"
+    );
 
     return { token };
   }

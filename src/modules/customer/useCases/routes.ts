@@ -5,7 +5,7 @@ import { findCustomerByIdController } from "./FindCustomerById";
 import { findCustomerByUsernameController } from "./FindCustomerByUsername";
 import { getCustomersController } from "./GetCustomers";
 import { updateCustomerController } from "./UpdateCustomer";
-import { ensureAuthenticated } from "../../account/middlewares/ensureAuthenticate";
+import { ensureCustomerAuthenticate as ensureAuthenticated } from "../../account/middlewares/ensureCustomerAuthenticate";
 
 const customerRoutes = Router();
 

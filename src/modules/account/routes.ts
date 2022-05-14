@@ -12,4 +12,8 @@ authRoutes.post("/deliveryman", (request: Request, response: Response) => {
   authenticateDeliverymanController.handle(request, response);
 });
 
+authRoutes.post("/login", (request: Request, response: Response) => {
+  authenticateDeliverymanController.handle(request, response);
+});
+
 export { authRoutes };

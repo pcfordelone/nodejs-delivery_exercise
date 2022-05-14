@@ -1,10 +1,10 @@
 import { PrismaDeliverymanRepository } from "../../../deliveryman/core/repository/PrismaDeliverymanRepository";
-import { JWTAuthenticateDeliverymanProvider } from "../../providers/JWTAuthenticateDeliverymanProvider";
+import { JWTAuthenticateProvider } from "../../providers/JWTAuthenticateProvider";
 import { AuthenticateDeliverymanController } from "./AuthenticateDeliverymanController";
 import { AuthenticateDeliverymanUseCase } from "./AuthenticateDeliverymanUseCase";
 
 const deliverymanRepository = new PrismaDeliverymanRepository();
-const authenticateProvider = new JWTAuthenticateDeliverymanProvider();
+const authenticateProvider = new JWTAuthenticateProvider();
 const authenticateDeliverymanUseCase = new AuthenticateDeliverymanUseCase(
   deliverymanRepository,
   authenticateProvider
