@@ -1,5 +1,6 @@
 import { ICustomerRepository } from "../../../customer/core/repository/ICustomerRepository";
 import { IAuthenticateProvider } from "../../providers/IAuthenticateProvider";
+import bcrypt from "bcrypt";
 
 interface IAuthenticateCustomer {
   username: string;
@@ -21,7 +22,12 @@ class AuthenticateCustomerUseCase {
       throw new Error("Customer does not exists");
     }
 
-    if (data.password !== customerExists.password) {
+    const checkPassword = await bcrypt.compare(
+      data.password,
+      customerExists.password
+    );
+
+    if (!checkPassword) {
       throw new Error("Wrong password!!!");
     }
 

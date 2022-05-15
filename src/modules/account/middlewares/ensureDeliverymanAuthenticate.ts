@@ -39,6 +39,8 @@ export const ensureDeliverymanAuthenticate: TEnsureAuthenticated = (
       });
     }
 
+    request.deliveryman_id = result.user.id;
+
     return next();
   } catch (error) {
     return response.status(401).json({
